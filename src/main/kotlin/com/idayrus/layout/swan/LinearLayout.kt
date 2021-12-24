@@ -61,6 +61,16 @@ class LinearLayout(private val orientation: String) : LayoutManager2 {
         x = 0
         y = insets.top
 
+        // Do layout for LinearLayout & FrameLayout
+        components.forEach { i ->
+            if (i.key is JPanel) {
+                val layout = (i.key as JPanel).layout
+                if (layout is LinearLayout || layout is FrameLayout) {
+                    i.key.doLayout()
+                }
+            }
+        }
+
         // Components container
         val weightComponents: MutableMap<Component, LinearConstraints> = mutableMapOf()
         val matchComponents: MutableMap<Component, LinearConstraints> = mutableMapOf()
@@ -71,11 +81,6 @@ class LinearLayout(private val orientation: String) : LayoutManager2 {
             VERTICAL -> {
                 // Group components
                 components.forEach { i ->
-                    if (i.key is JPanel) {
-                        if ((i.key as JPanel).layout is LinearLayout) {
-                            i.key.doLayout()
-                        }
-                    }
                     val c = i.value
                     when {
                         (c.weight > 0 && c.height == 0) -> weightComponents[i.key] = i.value
@@ -100,11 +105,6 @@ class LinearLayout(private val orientation: String) : LayoutManager2 {
             HORIZONTAL -> {
                 // Group components
                 components.forEach { i ->
-                    if (i.key is JPanel) {
-                        if ((i.key as JPanel).layout is LinearLayout) {
-                            i.key.doLayout()
-                        }
-                    }
                     val c = i.value
                     when {
                         (c.weight > 0 && c.width == 0) -> weightComponents[i.key] = i.value
