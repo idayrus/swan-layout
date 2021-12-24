@@ -10,7 +10,7 @@ publishing {
         register("mavenJava", MavenPublication::class) {
             groupId = "com.idayrus.layout.swan"
             artifactId = "SwanLayout"
-            version = "1.0.00"
+            version = "1.1.00"
             from(components["java"])
         }
     }
