@@ -28,7 +28,7 @@ dependencies {
 
 ## Documentation
 
-See our documentation at https://swan-layout.idayrus.com/
+See full documentation at https://swan-layout.idayrus.com/
 
 ## Examples
 
