@@ -22,7 +22,7 @@ Add to module `build.gradle`
 
 ```gradle
 dependencies {
-  implementation 'com.github.idayrus:swan-layout:1.00.000'
+  implementation 'com.github.idayrus:swan-layout:VERSION'
 }
 ```
 
