@@ -190,8 +190,10 @@ class LinearLayout(private val orientation: String) : LayoutManager2 {
                 // Set wrap size
                 val marginWidth = (width + constraints.marginStart + constraints.marginEnd)
                 val marginHeight = (height + constraints.marginTop + constraints.marginBottom)
-                if (width > wrapWidth) wrapWidth = marginWidth
-                if (height > wrapHeight) wrapHeight += marginHeight
+                if (marginWidth > wrapWidth) {
+                    wrapWidth = marginWidth
+                }
+                wrapHeight += marginHeight
 
                 // Set Size
                 constraints.calculatedWidth = width
@@ -200,7 +202,7 @@ class LinearLayout(private val orientation: String) : LayoutManager2 {
 
                 // Calculate remain height
                 if (!isWeight) {
-                    remainHeight -= (height + constraints.marginTop + constraints.marginBottom)
+                    remainHeight -= marginHeight
                 }
             }
         }
@@ -257,8 +259,10 @@ class LinearLayout(private val orientation: String) : LayoutManager2 {
                 // Set wrap size
                 val marginWidth = (width + constraints.marginStart + constraints.marginEnd)
                 val marginHeight = (height + constraints.marginTop + constraints.marginBottom)
-                if (width > wrapWidth) wrapWidth += marginWidth
-                if (height > wrapHeight) wrapHeight = marginHeight
+                wrapWidth += marginWidth
+                if (marginHeight > wrapHeight) {
+                    wrapHeight = marginHeight
+                }
 
                 // Set Size
                 constraints.calculatedWidth = width
@@ -267,7 +271,7 @@ class LinearLayout(private val orientation: String) : LayoutManager2 {
 
                 // Calculate remain width
                 if (!isWeight) {
-                    remainWidth -= (width + constraints.marginStart + constraints.marginEnd)
+                    remainWidth -= marginWidth
                 }
             }
         }
