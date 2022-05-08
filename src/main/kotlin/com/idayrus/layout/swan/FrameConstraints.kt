@@ -1,9 +1,17 @@
 package com.idayrus.layout.swan
 
-import com.google.gson.Gson
 import java.io.Serializable
 
-class FrameConstraints : Serializable {
+data class FrameConstraints(
+    var gravity: String = CENTER,
+    var width: Int = WRAP_CONTENT,
+    var height: Int = WRAP_CONTENT,
+    var marginTop: Int = 0,
+    var marginEnd: Int = 0,
+    var marginBottom: Int = 0,
+    var marginStart: Int = 0,
+    private var marginValue: Int = 0
+) : Serializable {
 
     companion object {
         const val MATCH_PARENT = -1
@@ -20,34 +28,20 @@ class FrameConstraints : Serializable {
         const val CENTER = "center"
     }
 
-    var gravity = CENTER
-    var width = WRAP_CONTENT
-    var height = WRAP_CONTENT
-    var marginTop = 0
-    var marginEnd = 0
-    var marginBottom = 0
-    var marginStart = 0
-    var margin = 0
-        set(margin) {
-            marginTop = margin
-            marginEnd = margin
-            marginBottom = margin
-            marginStart = margin
-            field = margin
+    var margin: Int
+        get() = marginValue
+        set(value) {
+            marginTop = value
+            marginEnd = value
+            marginBottom = value
+            marginStart = value
+            marginValue = value
         }
-
-    fun clone(): FrameConstraints {
-        return Gson().fromJson(toString(), FrameConstraints::class.java)
-    }
 
     fun reset() {
         gravity = LinearConstraints.START
         width = LinearConstraints.WRAP_CONTENT
         height = LinearConstraints.WRAP_CONTENT
         margin = 0
-    }
-
-    override fun toString(): String {
-        return Gson().toJson(this)
     }
 }
