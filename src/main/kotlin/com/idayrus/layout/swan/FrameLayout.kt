@@ -21,7 +21,7 @@ class FrameLayout: LayoutManager2 {
     override fun addLayoutComponent(comp: Component?, constraints: Any?) {
         if (comp != null) {
             if (constraints is FrameConstraints) {
-                components[comp] = constraints.clone()
+                components[comp] = constraints.copy()
             } else {
                 throw IllegalArgumentException("Not an instance of LinearConstraints")
             }

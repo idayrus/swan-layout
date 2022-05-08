@@ -38,10 +38,6 @@ data class FrameConstraints(
             marginValue = value
         }
 
-    fun clone(): FrameConstraints {
-        return this.copy()
-    }
-
     fun reset() {
         gravity = LinearConstraints.START
         width = LinearConstraints.WRAP_CONTENT

@@ -45,10 +45,6 @@ data class LinearConstraints(
             }
         }
 
-    fun clone(): LinearConstraints {
-        return clone()
-    }
-
     fun reset() {
         gravity = START
         width = WRAP_CONTENT
