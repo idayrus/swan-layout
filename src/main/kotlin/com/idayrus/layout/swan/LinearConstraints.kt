@@ -1,9 +1,20 @@
 package com.idayrus.layout.swan
 
-import com.google.gson.Gson
 import java.io.Serializable
 
-class LinearConstraints : Serializable {
+data class LinearConstraints(
+    var gravity: String = START,
+    var width: Int = WRAP_CONTENT,
+    var height: Int = WRAP_CONTENT,
+    var calculatedWidth: Int = 0,
+    var calculatedHeight: Int = 0,
+    var marginTop: Int = 0,
+    var marginEnd: Int = 0,
+    var marginBottom: Int = 0,
+    var marginStart: Int = 0,
+    private var marginValue :Int = 0,
+    private var weightValue :Double = 0.0
+) : Serializable {
 
     companion object {
         const val MATCH_PARENT = -1
@@ -15,45 +26,34 @@ class LinearConstraints : Serializable {
         const val CENTER = "center"
     }
 
-    var gravity = START
-    var width = WRAP_CONTENT
-    var height = WRAP_CONTENT
-    var calculatedWidth = 0
-    var calculatedHeight = 0
-    var marginTop = 0
-    var marginEnd = 0
-    var marginBottom = 0
-    var marginStart = 0
-    var margin = 0
-        set(margin) {
-            marginTop = margin
-            marginEnd = margin
-            marginBottom = margin
-            marginStart = margin
-            field = margin
+    var margin : Int
+        get() = marginValue
+        set(value) {
+            marginTop = value
+            marginEnd = value
+            marginBottom = value
+            marginStart = value
+            marginValue = value
         }
-    var weight = 0.0
-        set(weight) {
-            field = if (weight in 0.0..1.0) {
-                weight
+    var weight : Double
+        get() = weightValue
+        set(value) {
+            weightValue = if (value in 0.0..1.0) {
+                value
             } else {
                 1.0
             }
         }
 
     fun clone(): LinearConstraints {
-        return Gson().fromJson(toString(), LinearConstraints::class.java)
+        return clone()
     }
 
     fun reset() {
         gravity = START
         width = WRAP_CONTENT
         height = WRAP_CONTENT
-        margin = 0
-        weight = 0.0
-    }
-
-    override fun toString(): String {
-        return Gson().toJson(this)
+        marginValue = 0
+        weightValue = 0.0
     }
 }

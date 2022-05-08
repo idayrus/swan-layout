@@ -10,7 +10,7 @@ publishing {
         register("mavenJava", MavenPublication::class) {
             groupId = "com.idayrus.layout.swan"
             artifactId = "SwanLayout"
-            version = "1.01.001"
+            version = "1.01.002"
             from(components["java"])
         }
     }
@@ -22,7 +22,6 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib"))
-    implementation("com.google.code.gson:gson:2.8.9")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")
 }
